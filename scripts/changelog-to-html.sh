@@ -57,13 +57,13 @@ markdown_to_html() {
 
 version_content=$(extract_version_section "$VERSION" "$CHANGELOG_FILE")
 if [[ -z "$version_content" ]]; then
-  echo "<h2>OpenClaw $VERSION</h2>"
-  echo "<p>Latest OpenClaw update.</p>"
-  echo "<p><a href=\"https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md\">View full changelog</a></p>"
+  echo "<h2>FluffBuzz $VERSION</h2>"
+  echo "<p>Latest FluffBuzz update.</p>"
+  echo "<p><a href=\"https://github.com/fluffbuzz/fluffbuzz/blob/main/CHANGELOG.md\">View full changelog</a></p>"
   exit 0
 fi
 
-echo "<h2>OpenClaw $VERSION</h2>"
+echo "<h2>FluffBuzz $VERSION</h2>"
 
 in_list=false
 while IFS= read -r line; do
@@ -88,4 +88,4 @@ if [[ "$in_list" == true ]]; then
   echo "</ul>"
 fi
 
-echo "<p><a href=\"https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md\">View full changelog</a></p>"
+echo "<p><a href=\"https://github.com/fluffbuzz/fluffbuzz/blob/main/CHANGELOG.md\">View full changelog</a></p>"

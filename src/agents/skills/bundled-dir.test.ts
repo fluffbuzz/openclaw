@@ -11,24 +11,24 @@ describe("resolveBundledSkillsDir", () => {
   let envSnapshot: ReturnType<typeof captureEnv>;
 
   beforeEach(() => {
-    envSnapshot = captureEnv(["OPENCLAW_BUNDLED_SKILLS_DIR"]);
+    envSnapshot = captureEnv(["FLUFFBUZZ_BUNDLED_SKILLS_DIR"]);
   });
 
   afterEach(() => {
     envSnapshot.restore();
   });
 
-  it("returns OPENCLAW_BUNDLED_SKILLS_DIR override when set", async () => {
-    const overrideDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-bundled-override-"));
-    process.env.OPENCLAW_BUNDLED_SKILLS_DIR = ` ${overrideDir} `;
+  it("returns FLUFFBUZZ_BUNDLED_SKILLS_DIR override when set", async () => {
+    const overrideDir = await fs.mkdtemp(path.join(os.tmpdir(), "fluffbuzz-bundled-override-"));
+    process.env.FLUFFBUZZ_BUNDLED_SKILLS_DIR = ` ${overrideDir} `;
     expect(resolveBundledSkillsDir()).toBe(overrideDir);
   });
 
   it("resolves bundled skills under a flattened dist layout", async () => {
-    delete process.env.OPENCLAW_BUNDLED_SKILLS_DIR;
+    delete process.env.FLUFFBUZZ_BUNDLED_SKILLS_DIR;
 
-    const root = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-bundled-"));
-    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "openclaw" }));
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), "fluffbuzz-bundled-"));
+    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "fluffbuzz" }));
 
     await writeSkill({
       dir: path.join(root, "skills", "peekaboo"),

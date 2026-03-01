@@ -1,0 +1,11 @@
+{
+  "name": "@fluffbuzz/puppy",
+  "version": "2026.2.26",
+  "description": "Puppy workflow tool plugin (typed pipelines + resumable approvals)",
+  "type": "module",
+  "fluffbuzz": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

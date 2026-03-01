@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in android ios macos shared)",
+      "Bash(do)",
+      "Bash(if [ -d \"/home/administrator/GitHub/fluffbuzz/apps/$dir/.git\" ])",
+      "Bash(then)",
+      "Bash(echo \"$dir: YES \\(is a git repo\\)\")",
+      "Bash(else)",
+      "Bash(echo \"$dir: NO \\(not a git repo\\)\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(chmod +x /tmp/rebrand.sh)",
+      "Bash(bash /tmp/rebrand.sh)",
+      "Bash(__NEW_LINE_2ce006a6388502cd__ find . -type f ! -path \"./.git/*\" ! -path \"*/node_modules/*\" ! -path \"*/dist/*\" \\\\\\( -iname \"*openclaw*\" -o -iname \"*clawdbot*\" -o -iname \"*clawhub*\" -o -iname \"*clawlog*\" -o -iname \"*moltbot*\" -o -iname \"*lobster*\" \\\\\\))",
+      "Bash(chmod +x /tmp/rename-files.sh)",
+      "Bash(bash /tmp/rename-files.sh)",
+      "Bash(gh auth status)",
+      "Bash(chmod +x /tmp/extract-submodules.sh /tmp/push-and-submodule.sh)",
+      "Bash(bash /tmp/extract-submodules.sh)"
+    ],
+    "additionalDirectories": [
+      "/home/administrator/GitHub/openclaw"
+    ]
+  }
+}

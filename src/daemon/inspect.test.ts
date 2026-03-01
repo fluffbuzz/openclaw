@@ -44,21 +44,21 @@ describe("findExtraGatewayServices (win32)", () => {
     expect(result).toEqual([]);
   });
 
-  it("collects only non-openclaw marker tasks from schtasks output", async () => {
+  it("collects only non-fluffbuzz marker tasks from schtasks output", async () => {
     execSchtasksMock.mockResolvedValueOnce({
       code: 0,
       stdout: [
-        "TaskName: OpenClaw Gateway",
-        "Task To Run: C:\\Program Files\\OpenClaw\\openclaw.exe gateway run",
+        "TaskName: FluffBuzz Gateway",
+        "Task To Run: C:\\Program Files\\FluffBuzz\\fluffbuzz.exe gateway run",
         "",
-        "TaskName: Clawdbot Legacy",
-        "Task To Run: C:\\clawdbot\\clawdbot.exe run",
+        "TaskName: Fluffbot Legacy",
+        "Task To Run: C:\\fluffbot\\fluffbot.exe run",
         "",
         "TaskName: Other Task",
         "Task To Run: C:\\tools\\helper.exe",
         "",
         "TaskName: MoltBot Legacy",
-        "Task To Run: C:\\moltbot\\moltbot.exe run",
+        "Task To Run: C:\\fluffbot\\fluffbot.exe run",
         "",
       ].join("\n"),
       stderr: "",
@@ -68,18 +68,18 @@ describe("findExtraGatewayServices (win32)", () => {
     expect(result).toEqual([
       {
         platform: "win32",
-        label: "Clawdbot Legacy",
-        detail: "task: Clawdbot Legacy, run: C:\\clawdbot\\clawdbot.exe run",
+        label: "Fluffbot Legacy",
+        detail: "task: Fluffbot Legacy, run: C:\\fluffbot\\fluffbot.exe run",
         scope: "system",
-        marker: "clawdbot",
+        marker: "fluffbot",
         legacy: true,
       },
       {
         platform: "win32",
         label: "MoltBot Legacy",
-        detail: "task: MoltBot Legacy, run: C:\\moltbot\\moltbot.exe run",
+        detail: "task: MoltBot Legacy, run: C:\\fluffbot\\fluffbot.exe run",
         scope: "system",
-        marker: "moltbot",
+        marker: "fluffbot",
         legacy: true,
       },
     ]);

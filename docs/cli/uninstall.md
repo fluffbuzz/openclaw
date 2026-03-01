@@ -1,17 +1,17 @@
 ---
-summary: "CLI reference for `openclaw uninstall` (remove gateway service + local data)"
+summary: "CLI reference for `fluffbuzz uninstall` (remove gateway service + local data)"
 read_when:
   - You want to remove the gateway service and/or local state
   - You want a dry-run first
 title: "uninstall"
 ---
 
-# `openclaw uninstall`
+# `fluffbuzz uninstall`
 
 Uninstall the gateway service + local data (CLI remains).
 
 ```bash
-openclaw uninstall
-openclaw uninstall --all --yes
-openclaw uninstall --dry-run
+fluffbuzz uninstall
+fluffbuzz uninstall --all --yes
+fluffbuzz uninstall --dry-run
 ```

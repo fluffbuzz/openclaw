@@ -1,7 +1,7 @@
-import type { OpenClawConfig } from "../config/config.js";
+import type { FluffBuzzConfig } from "../config/config.js";
 
 export function resolveChannelAccountConfigBasePath(params: {
-  cfg: OpenClawConfig;
+  cfg: FluffBuzzConfig;
   channelKey: string;
   accountId: string;
 }): string {

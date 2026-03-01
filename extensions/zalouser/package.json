@@ -1,12 +1,12 @@
 {
-  "name": "@openclaw/zalouser",
+  "name": "@fluffbuzz/zalouser",
   "version": "2026.2.26",
-  "description": "OpenClaw Zalo Personal Account plugin via zca-cli",
+  "description": "FluffBuzz Zalo Personal Account plugin via zca-cli",
   "type": "module",
   "dependencies": {
     "@sinclair/typebox": "0.34.48"
   },
-  "openclaw": {
+  "fluffbuzz": {
     "extensions": [
       "./index.ts"
     ],
@@ -24,7 +24,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/zalouser",
+      "npmSpec": "@fluffbuzz/zalouser",
       "localPath": "extensions/zalouser",
       "defaultChoice": "npm"
     }

@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/copilot-proxy",
+  "name": "@fluffbuzz/copilot-proxy",
   "version": "2026.2.26",
   "private": true,
-  "description": "OpenClaw Copilot Proxy provider plugin",
+  "description": "FluffBuzz Copilot Proxy provider plugin",
   "type": "module",
-  "openclaw": {
+  "fluffbuzz": {
     "extensions": [
       "./index.ts"
     ]

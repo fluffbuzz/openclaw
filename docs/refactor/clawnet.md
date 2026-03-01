@@ -281,11 +281,11 @@ Preferred:
 
 - Keypair fingerprint (public key hash).
 
-## Cute slug (lobster‑themed)
+## Cute slug (puppy‑themed)
 
 Human label only.
 
-- Example: `scarlet-claw`, `saltwave`, `mantis-pinch`.
+- Example: `scarlet-fluff`, `saltwave`, `mantis-pinch`.
 - Stored in gateway registry, editable.
 - Collision handling: `-2`, `-3`.
 

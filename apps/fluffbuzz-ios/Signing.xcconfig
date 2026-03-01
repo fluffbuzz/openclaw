@@ -1,0 +1,17 @@
+// Default signing values for shared/repo builds.
+// Auto-selected local team overrides live in .local-signing.xcconfig (git-ignored).
+// Manual local overrides can go in LocalSigning.xcconfig (git-ignored).
+
+FLUFFBUZZ_CODE_SIGN_STYLE = Manual
+FLUFFBUZZ_DEVELOPMENT_TEAM = Y5PE65HELJ
+
+FLUFFBUZZ_APP_BUNDLE_ID = com.fluffbuzz.ios
+FLUFFBUZZ_SHARE_BUNDLE_ID = com.fluffbuzz.ios.share
+
+FLUFFBUZZ_APP_PROFILE = com.fluffbuzz.ios Development
+FLUFFBUZZ_SHARE_PROFILE = com.fluffbuzz.ios.share Development
+
+// Keep local includes after defaults: xcconfig is evaluated top-to-bottom,
+// so later assignments in local files override the defaults above.
+#include? ".local-signing.xcconfig"
+#include? "LocalSigning.xcconfig"

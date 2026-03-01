@@ -97,15 +97,15 @@ describe("daemon-cli coverage", () => {
 
   beforeEach(() => {
     envSnapshot = captureEnv([
-      "OPENCLAW_STATE_DIR",
-      "OPENCLAW_CONFIG_PATH",
-      "OPENCLAW_GATEWAY_PORT",
-      "OPENCLAW_PROFILE",
+      "FLUFFBUZZ_STATE_DIR",
+      "FLUFFBUZZ_CONFIG_PATH",
+      "FLUFFBUZZ_GATEWAY_PORT",
+      "FLUFFBUZZ_PROFILE",
     ]);
-    process.env.OPENCLAW_STATE_DIR = "/tmp/openclaw-cli-state";
-    process.env.OPENCLAW_CONFIG_PATH = "/tmp/openclaw-cli-state/openclaw.json";
-    delete process.env.OPENCLAW_GATEWAY_PORT;
-    delete process.env.OPENCLAW_PROFILE;
+    process.env.FLUFFBUZZ_STATE_DIR = "/tmp/fluffbuzz-cli-state";
+    process.env.FLUFFBUZZ_CONFIG_PATH = "/tmp/fluffbuzz-cli-state/fluffbuzz.json";
+    delete process.env.FLUFFBUZZ_GATEWAY_PORT;
+    delete process.env.FLUFFBUZZ_PROFILE;
     serviceReadCommand.mockResolvedValue(null);
   });
 
@@ -133,12 +133,12 @@ describe("daemon-cli coverage", () => {
     serviceReadCommand.mockResolvedValueOnce({
       programArguments: ["/bin/node", "cli", "gateway", "--port", "19001"],
       environment: {
-        OPENCLAW_PROFILE: "dev",
-        OPENCLAW_STATE_DIR: "/tmp/openclaw-daemon-state",
-        OPENCLAW_CONFIG_PATH: "/tmp/openclaw-daemon-state/openclaw.json",
-        OPENCLAW_GATEWAY_PORT: "19001",
+        FLUFFBUZZ_PROFILE: "dev",
+        FLUFFBUZZ_STATE_DIR: "/tmp/fluffbuzz-daemon-state",
+        FLUFFBUZZ_CONFIG_PATH: "/tmp/fluffbuzz-daemon-state/fluffbuzz.json",
+        FLUFFBUZZ_GATEWAY_PORT: "19001",
       },
-      sourcePath: "/tmp/ai.openclaw.gateway.plist",
+      sourcePath: "/tmp/com.fluffbuzz.gateway.plist",
     });
 
     await runDaemonCommand(["daemon", "status", "--json"]);

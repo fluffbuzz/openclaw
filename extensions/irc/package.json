@@ -1,9 +1,9 @@
 {
-  "name": "@openclaw/irc",
+  "name": "@fluffbuzz/irc",
   "version": "2026.2.26",
-  "description": "OpenClaw IRC channel plugin",
+  "description": "FluffBuzz IRC channel plugin",
   "type": "module",
-  "openclaw": {
+  "fluffbuzz": {
     "extensions": [
       "./index.ts"
     ]
