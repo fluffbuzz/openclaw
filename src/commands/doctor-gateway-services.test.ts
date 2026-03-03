@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { FluffBuzzConfig } from "../config/config.js";
 import { withEnvAsync } from "../test-utils/env.js";
 
 const mocks = vi.hoisted(() => ({
@@ -78,13 +78,13 @@ function makeDoctorPrompts() {
   };
 }
 
-async function runRepair(cfg: OpenClawConfig) {
+async function runRepair(cfg: FluffBuzzConfig) {
   await maybeRepairGatewayServiceConfig(cfg, "local", makeDoctorIo(), makeDoctorPrompts());
 }
 
 const gatewayProgramArguments = [
   "/usr/bin/node",
-  "/usr/local/bin/openclaw",
+  "/usr/local/bin/fluffbuzz",
   "gateway",
   "--port",
   "18789",
@@ -94,7 +94,7 @@ function setupGatewayTokenRepairScenario(expectedToken: string) {
   mocks.readCommand.mockResolvedValue({
     programArguments: gatewayProgramArguments,
     environment: {
-      OPENCLAW_GATEWAY_TOKEN: "stale-token",
+      FLUFFBUZZ_GATEWAY_TOKEN: "stale-token",
     },
   });
   mocks.auditGatewayServiceConfig.mockResolvedValue({
@@ -102,7 +102,7 @@ function setupGatewayTokenRepairScenario(expectedToken: string) {
     issues: [
       {
         code: "gateway-token-mismatch",
-        message: "Gateway service OPENCLAW_GATEWAY_TOKEN does not match gateway.auth.token",
+        message: "Gateway service FLUFFBUZZ_GATEWAY_TOKEN does not match gateway.auth.token",
         level: "recommended",
       },
     ],
@@ -111,7 +111,7 @@ function setupGatewayTokenRepairScenario(expectedToken: string) {
     programArguments: gatewayProgramArguments,
     workingDirectory: "/tmp",
     environment: {
-      OPENCLAW_GATEWAY_TOKEN: expectedToken,
+      FLUFFBUZZ_GATEWAY_TOKEN: expectedToken,
     },
   });
   mocks.install.mockResolvedValue(undefined);
@@ -125,7 +125,7 @@ describe("maybeRepairGatewayServiceConfig", () => {
   it("treats gateway.auth.token as source of truth for service token repairs", async () => {
     setupGatewayTokenRepairScenario("config-token");
 
-    const cfg: OpenClawConfig = {
+    const cfg: FluffBuzzConfig = {
       gateway: {
         auth: {
           mode: "token",
@@ -149,11 +149,11 @@ describe("maybeRepairGatewayServiceConfig", () => {
     expect(mocks.install).toHaveBeenCalledTimes(1);
   });
 
-  it("uses OPENCLAW_GATEWAY_TOKEN when config token is missing", async () => {
-    await withEnvAsync({ OPENCLAW_GATEWAY_TOKEN: "env-token" }, async () => {
+  it("uses FLUFFBUZZ_GATEWAY_TOKEN when config token is missing", async () => {
+    await withEnvAsync({ FLUFFBUZZ_GATEWAY_TOKEN: "env-token" }, async () => {
       setupGatewayTokenRepairScenario("env-token");
 
-      const cfg: OpenClawConfig = {
+      const cfg: FluffBuzzConfig = {
         gateway: {},
       };
 
@@ -186,16 +186,16 @@ describe("maybeScanExtraGatewayServices", () => {
     mocks.findExtraGatewayServices.mockResolvedValue([
       {
         platform: "linux",
-        label: "moltbot-gateway.service",
-        detail: "unit: /home/test/.config/systemd/user/moltbot-gateway.service",
+        label: "fluffbot-gateway.service",
+        detail: "unit: /home/test/.config/systemd/user/fluffbot-gateway.service",
         scope: "user",
         legacy: true,
       },
     ]);
     mocks.uninstallLegacySystemdUnits.mockResolvedValue([
       {
-        name: "moltbot-gateway",
-        unitPath: "/home/test/.config/systemd/user/moltbot-gateway.service",
+        name: "fluffbot-gateway",
+        unitPath: "/home/test/.config/systemd/user/fluffbot-gateway.service",
         enabled: true,
         exists: true,
       },
@@ -220,11 +220,11 @@ describe("maybeScanExtraGatewayServices", () => {
       stdout: process.stdout,
     });
     expect(mocks.note).toHaveBeenCalledWith(
-      expect.stringContaining("moltbot-gateway.service"),
+      expect.stringContaining("fluffbot-gateway.service"),
       "Legacy gateway removed",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Legacy gateway services removed. Installing OpenClaw gateway next.",
+      "Legacy gateway services removed. Installing FluffBuzz gateway next.",
     );
   });
 });

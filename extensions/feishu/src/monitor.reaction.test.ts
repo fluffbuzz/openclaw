@@ -1,4 +1,4 @@
-import type { ClawdbotConfig, RuntimeEnv } from "openclaw/plugin-sdk";
+import type { FluffbotConfig, RuntimeEnv } from "fluffbuzz/plugin-sdk";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { hasControlCommand } from "../../../src/auto-reply/command-detection.js";
 import {
@@ -37,7 +37,7 @@ vi.mock("./monitor.transport.js", () => ({
   monitorWebhook: monitorWebhookMock,
 }));
 
-const cfg = {} as ClawdbotConfig;
+const cfg = {} as FluffbotConfig;
 
 function makeReactionEvent(
   overrides: Partial<FeishuReactionCreatedEvent> = {},
@@ -53,7 +53,7 @@ function makeReactionEvent(
 
 type FeishuMention = NonNullable<FeishuMessageEvent["message"]["mentions"]>[number];
 
-function buildDebounceConfig(): ClawdbotConfig {
+function buildDebounceConfig(): FluffbotConfig {
   return {
     messages: {
       inbound: {
@@ -68,7 +68,7 @@ function buildDebounceConfig(): ClawdbotConfig {
         enabled: true,
       },
     },
-  } as ClawdbotConfig;
+  } as FluffbotConfig;
 }
 
 function buildDebounceAccount(): ResolvedFeishuAccount {
@@ -187,7 +187,7 @@ describe("resolveReactionSyntheticEvent", () => {
             reactionNotifications: "off",
           },
         },
-      } as ClawdbotConfig,
+      } as FluffbotConfig,
       accountId: "default",
       event,
       botOpenId: "ou_bot",
@@ -231,7 +231,7 @@ describe("resolveReactionSyntheticEvent", () => {
             reactionNotifications: "all",
           },
         },
-      } as ClawdbotConfig,
+      } as FluffbotConfig,
       accountId: "default",
       event,
       botOpenId: "ou_bot",

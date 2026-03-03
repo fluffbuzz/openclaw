@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
 import * as Lark from "@larksuiteoapi/node-sdk";
-import type { ClawdbotConfig, RuntimeEnv, HistoryEntry } from "openclaw/plugin-sdk";
+import type { FluffbotConfig, RuntimeEnv, HistoryEntry } from "fluffbuzz/plugin-sdk";
 import { resolveFeishuAccount } from "./accounts.js";
 import { raceWithTimeoutAndAbort } from "./async.js";
 import {
@@ -39,7 +39,7 @@ export type FeishuReactionCreatedEvent = {
 };
 
 type ResolveReactionSyntheticEventParams = {
-  cfg: ClawdbotConfig;
+  cfg: FluffbotConfig;
   accountId: string;
   event: FeishuReactionCreatedEvent;
   botOpenId?: string;
@@ -127,7 +127,7 @@ export async function resolveReactionSyntheticEvent(
 }
 
 type RegisterEventHandlersContext = {
-  cfg: ClawdbotConfig;
+  cfg: FluffbotConfig;
   accountId: string;
   runtime?: RuntimeEnv;
   chatHistories: Map<string, HistoryEntry[]>;
@@ -486,7 +486,7 @@ function registerEventHandlers(
 export type BotOpenIdSource = { kind: "prefetched"; botOpenId?: string } | { kind: "fetch" };
 
 export type MonitorSingleAccountParams = {
-  cfg: ClawdbotConfig;
+  cfg: FluffbotConfig;
   account: ResolvedFeishuAccount;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;

@@ -1,4 +1,4 @@
-import type { ClawdbotConfig, RuntimeEnv } from "openclaw/plugin-sdk";
+import type { FluffbotConfig, RuntimeEnv } from "fluffbuzz/plugin-sdk";
 import { listEnabledFeishuAccounts, resolveFeishuAccount } from "./accounts.js";
 import {
   monitorSingleAccount,
@@ -14,7 +14,7 @@ import {
 } from "./monitor.state.js";
 
 export type MonitorFeishuOpts = {
-  config?: ClawdbotConfig;
+  config?: FluffbotConfig;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;
   accountId?: string;

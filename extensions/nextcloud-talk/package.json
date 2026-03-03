@@ -1,9 +1,9 @@
 {
-  "name": "@openclaw/nextcloud-talk",
+  "name": "@fluffbuzz/nextcloud-talk",
   "version": "2026.3.2",
-  "description": "OpenClaw Nextcloud Talk channel plugin",
+  "description": "FluffBuzz Nextcloud Talk channel plugin",
   "type": "module",
-  "openclaw": {
+  "fluffbuzz": {
     "extensions": [
       "./index.ts"
     ],
@@ -22,7 +22,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/nextcloud-talk",
+      "npmSpec": "@fluffbuzz/nextcloud-talk",
       "localPath": "extensions/nextcloud-talk",
       "defaultChoice": "npm"
     }

@@ -1,6 +1,6 @@
 import path from "node:path";
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk";
+import type { FluffBuzzPluginApi } from "fluffbuzz/plugin-sdk";
+import { resolvePreferredFluffBuzzTmpDir } from "fluffbuzz/plugin-sdk";
 import {
   diffsPluginConfigSchema,
   resolveDiffsPluginDefaults,
@@ -16,11 +16,11 @@ const plugin = {
   name: "Diffs",
   description: "Read-only diff viewer and PNG/PDF renderer for agents.",
   configSchema: diffsPluginConfigSchema,
-  register(api: OpenClawPluginApi) {
+  register(api: FluffBuzzPluginApi) {
     const defaults = resolveDiffsPluginDefaults(api.pluginConfig);
     const security = resolveDiffsPluginSecurity(api.pluginConfig);
     const store = new DiffArtifactStore({
-      rootDir: path.join(resolvePreferredOpenClawTmpDir(), "openclaw-diffs"),
+      rootDir: path.join(resolvePreferredFluffBuzzTmpDir(), "fluffbuzz-diffs"),
       logger: api.logger,
     });
 

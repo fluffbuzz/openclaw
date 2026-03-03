@@ -1,0 +1,16 @@
+{
+  "name": "fluffbot",
+  "version": "2026.2.12",
+  "description": "Compatibility shim that forwards to fluffbuzz",
+  "bin": {
+    "fluffbot": "./bin/fluffbot.js"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./cli-entry": "./bin/fluffbot.js"
+  },
+  "dependencies": {
+    "fluffbuzz": "workspace:*"
+  }
+}

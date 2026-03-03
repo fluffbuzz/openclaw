@@ -1,10 +1,10 @@
-import type { ClawdbotConfig } from "openclaw/plugin-sdk";
+import type { FluffbotConfig } from "fluffbuzz/plugin-sdk";
 import { resolveFeishuAccount } from "./accounts.js";
 import { createFeishuClient } from "./client.js";
 import { resolveReceiveIdType, normalizeFeishuTarget } from "./targets.js";
 
 export function resolveFeishuSendTarget(params: {
-  cfg: ClawdbotConfig;
+  cfg: FluffbotConfig;
   to: string;
   accountId?: string;
 }) {

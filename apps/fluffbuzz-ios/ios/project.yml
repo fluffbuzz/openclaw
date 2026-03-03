@@ -1,0 +1,248 @@
+name: FluffBuzz
+options:
+  bundleIdPrefix: com.fluffbuzz
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "16.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    ENABLE_APP_INTENTS_METADATA_GENERATION: NO
+
+packages:
+  FluffBuzzKit:
+    path: ../shared/FluffBuzzKit
+  Swabble:
+    path: ../../Swabble
+
+schemes:
+  FluffBuzz:
+    shared: true
+    build:
+      targets:
+        FluffBuzz: all
+    test:
+      targets:
+        - FluffBuzzTests
+
+targets:
+  FluffBuzz:
+    type: application
+    platform: iOS
+    configFiles:
+      Debug: Signing.xcconfig
+      Release: Signing.xcconfig
+    sources:
+      - path: Sources
+    dependencies:
+      - target: FluffBuzzShareExtension
+        embed: true
+      - target: FluffBuzzWatchApp
+      - package: FluffBuzzKit
+      - package: FluffBuzzKit
+        product: FluffBuzzChatUI
+      - package: FluffBuzzKit
+        product: FluffBuzzProtocol
+      - package: Swabble
+        product: SwabbleKit
+      - sdk: AppIntents.framework
+    preBuildScripts:
+      - name: SwiftFormat (lint)
+        basedOnDependencyAnalysis: false
+        inputFileLists:
+          - $(SRCROOT)/SwiftSources.input.xcfilelist
+        script: |
+          set -euo pipefail
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+          if ! command -v swiftformat >/dev/null 2>&1; then
+            echo "error: swiftformat not found (brew install swiftformat)" >&2
+            exit 1
+          fi
+          swiftformat --lint --config "$SRCROOT/../../.swiftformat" \
+            --filelist "$SRCROOT/SwiftSources.input.xcfilelist"
+      - name: SwiftLint
+        basedOnDependencyAnalysis: false
+        inputFileLists:
+          - $(SRCROOT)/SwiftSources.input.xcfilelist
+        script: |
+          set -euo pipefail
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+          if ! command -v swiftlint >/dev/null 2>&1; then
+            echo "error: swiftlint not found (brew install swiftlint)" >&2
+            exit 1
+          fi
+          swiftlint lint --config "$SRCROOT/.swiftlint.yml" --use-script-input-file-lists
+    settings:
+      base:
+        CODE_SIGN_IDENTITY: "Apple Development"
+        CODE_SIGN_ENTITLEMENTS: Sources/FluffBuzz.entitlements
+        CODE_SIGN_STYLE: "$(FLUFFBUZZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(FLUFFBUZZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: "$(FLUFFBUZZ_APP_BUNDLE_ID)"
+        PROVISIONING_PROFILE_SPECIFIER: "$(FLUFFBUZZ_APP_PROFILE)"
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        ENABLE_APPINTENTS_METADATA: NO
+        ENABLE_APP_INTENTS_METADATA_GENERATION: NO
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: FluffBuzz
+        CFBundleIconName: AppIcon
+        CFBundleURLTypes:
+          - CFBundleURLName: com.fluffbuzz.ios
+            CFBundleURLSchemes:
+              - fluffbuzz
+        CFBundleShortVersionString: "2026.3.2"
+        CFBundleVersion: "20260301"
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UIBackgroundModes:
+          - audio
+          - remote-notification
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.fluffbuzz.ios.bgrefresh
+        NSLocalNetworkUsageDescription: FluffBuzz discovers and connects to your FluffBuzz gateway on the local network.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoadsInWebContent: true
+        NSBonjourServices:
+          - _fluffbuzz-gw._tcp
+        NSCameraUsageDescription: FluffBuzz can capture photos or short video clips when requested via the gateway.
+        NSLocationWhenInUseUsageDescription: FluffBuzz uses your location when you allow location sharing.
+        NSLocationAlwaysAndWhenInUseUsageDescription: FluffBuzz can share your location in the background when you enable Always.
+        NSMicrophoneUsageDescription: FluffBuzz needs microphone access for voice wake.
+        NSSpeechRecognitionUsageDescription: FluffBuzz uses on-device speech recognition for voice wake.
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+
+  FluffBuzzShareExtension:
+    type: app-extension
+    platform: iOS
+    configFiles:
+      Debug: Signing.xcconfig
+      Release: Signing.xcconfig
+    sources:
+      - path: ShareExtension
+    dependencies:
+      - package: FluffBuzzKit
+      - sdk: AppIntents.framework
+    settings:
+      base:
+        CODE_SIGN_IDENTITY: "Apple Development"
+        CODE_SIGN_STYLE: "$(FLUFFBUZZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(FLUFFBUZZ_DEVELOPMENT_TEAM)"
+        ENABLE_APPINTENTS_METADATA: NO
+        ENABLE_APP_INTENTS_METADATA_GENERATION: NO
+        PRODUCT_BUNDLE_IDENTIFIER: "$(FLUFFBUZZ_SHARE_BUNDLE_ID)"
+        PROVISIONING_PROFILE_SPECIFIER: "$(FLUFFBUZZ_SHARE_PROFILE)"
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: FluffBuzz Share
+        CFBundleShortVersionString: "2026.3.2"
+        CFBundleVersion: "20260301"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).ShareViewController"
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsImageWithMaxCount: 10
+              NSExtensionActivationSupportsMovieWithMaxCount: 1
+
+  FluffBuzzWatchApp:
+    type: application.watchapp2
+    platform: watchOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: WatchApp
+    dependencies:
+      - target: FluffBuzzWatchExtension
+    configFiles:
+      Debug: Config/Signing.xcconfig
+      Release: Config/Signing.xcconfig
+    settings:
+      base:
+        ENABLE_APPINTENTS_METADATA: NO
+        ENABLE_APP_INTENTS_METADATA_GENERATION: NO
+        PRODUCT_BUNDLE_IDENTIFIER: "$(FLUFFBUZZ_WATCH_APP_BUNDLE_ID)"
+    info:
+      path: WatchApp/Info.plist
+      properties:
+        CFBundleDisplayName: FluffBuzz
+        CFBundleShortVersionString: "2026.3.2"
+        CFBundleVersion: "20260301"
+        WKCompanionAppBundleIdentifier: "$(FLUFFBUZZ_APP_BUNDLE_ID)"
+        WKWatchKitApp: true
+
+  FluffBuzzWatchExtension:
+    type: watchkit2-extension
+    platform: watchOS
+    deploymentTarget: "11.0"
+    sources:
+      - path: WatchExtension/Sources
+    dependencies:
+      - sdk: AppIntents.framework
+      - sdk: WatchConnectivity.framework
+      - sdk: UserNotifications.framework
+    configFiles:
+      Debug: Config/Signing.xcconfig
+      Release: Config/Signing.xcconfig
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: "$(FLUFFBUZZ_WATCH_EXTENSION_BUNDLE_ID)"
+    info:
+      path: WatchExtension/Info.plist
+      properties:
+        CFBundleDisplayName: FluffBuzz
+        CFBundleShortVersionString: "2026.3.2"
+        CFBundleVersion: "20260301"
+        NSExtension:
+          NSExtensionAttributes:
+            WKAppBundleIdentifier: "$(FLUFFBUZZ_WATCH_APP_BUNDLE_ID)"
+          NSExtensionPointIdentifier: com.apple.watchkit
+
+  FluffBuzzTests:
+    type: bundle.unit-test
+    platform: iOS
+    configFiles:
+      Debug: Signing.xcconfig
+      Release: Signing.xcconfig
+    sources:
+      - path: Tests
+    dependencies:
+      - target: FluffBuzz
+      - package: Swabble
+        product: SwabbleKit
+      - sdk: AppIntents.framework
+    settings:
+      base:
+        CODE_SIGN_IDENTITY: "Apple Development"
+        CODE_SIGN_STYLE: "$(FLUFFBUZZ_CODE_SIGN_STYLE)"
+        DEVELOPMENT_TEAM: "$(FLUFFBUZZ_DEVELOPMENT_TEAM)"
+        PRODUCT_BUNDLE_IDENTIFIER: com.fluffbuzz.ios.tests
+        ENABLE_APP_INTENTS_METADATA_GENERATION: NO
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/FluffBuzz.app/FluffBuzz"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+    info:
+      path: Tests/Info.plist
+      properties:
+        CFBundleDisplayName: FluffBuzzTests
+        CFBundleShortVersionString: "2026.3.2"
+        CFBundleVersion: "20260301"

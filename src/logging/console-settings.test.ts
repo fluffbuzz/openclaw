@@ -18,7 +18,7 @@ vi.mock("./logger.js", () => ({
 
 let loadConfigCalls = 0;
 let originalIsTty: boolean | undefined;
-let originalOpenClawTestConsole: string | undefined;
+let originalFluffBuzzTestConsole: string | undefined;
 let snapshot: ConsoleSnapshot;
 let logging: typeof import("../logging.js");
 let state: typeof import("./state.js");
@@ -32,8 +32,8 @@ beforeEach(() => {
   loadConfigCalls = 0;
   snapshot = captureConsoleSnapshot();
   originalIsTty = process.stdout.isTTY;
-  originalOpenClawTestConsole = process.env.OPENCLAW_TEST_CONSOLE;
-  process.env.OPENCLAW_TEST_CONSOLE = "1";
+  originalFluffBuzzTestConsole = process.env.FLUFFBUZZ_TEST_CONSOLE;
+  process.env.FLUFFBUZZ_TEST_CONSOLE = "1";
   Object.defineProperty(process.stdout, "isTTY", { value: false, configurable: true });
 });
 
@@ -44,10 +44,10 @@ afterEach(() => {
   console.error = snapshot.error;
   console.debug = snapshot.debug;
   console.trace = snapshot.trace;
-  if (originalOpenClawTestConsole === undefined) {
-    delete process.env.OPENCLAW_TEST_CONSOLE;
+  if (originalFluffBuzzTestConsole === undefined) {
+    delete process.env.FLUFFBUZZ_TEST_CONSOLE;
   } else {
-    process.env.OPENCLAW_TEST_CONSOLE = originalOpenClawTestConsole;
+    process.env.FLUFFBUZZ_TEST_CONSOLE = originalFluffBuzzTestConsole;
   }
   Object.defineProperty(process.stdout, "isTTY", { value: originalIsTty, configurable: true });
   logging.setConsoleConfigLoaderForTests();

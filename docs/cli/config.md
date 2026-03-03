@@ -1,27 +1,27 @@
 ---
-summary: "CLI reference for `openclaw config` (get/set/unset/file/validate)"
+summary: "CLI reference for `fluffbuzz config` (get/set/unset/file/validate)"
 read_when:
   - You want to read or edit config non-interactively
 title: "config"
 ---
 
-# `openclaw config`
+# `fluffbuzz config`
 
 Config helpers: get/set/unset/validate values by path and print the active
 config file. Run without a subcommand to open
-the configure wizard (same as `openclaw configure`).
+the configure wizard (same as `fluffbuzz configure`).
 
 ## Examples
 
 ```bash
-openclaw config file
-openclaw config get browser.executablePath
-openclaw config set browser.executablePath "/usr/bin/google-chrome"
-openclaw config set agents.defaults.heartbeat.every "2h"
-openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
-openclaw config unset tools.web.search.apiKey
-openclaw config validate
-openclaw config validate --json
+fluffbuzz config file
+fluffbuzz config get browser.executablePath
+fluffbuzz config set browser.executablePath "/usr/bin/google-chrome"
+fluffbuzz config set agents.defaults.heartbeat.every "2h"
+fluffbuzz config set agents.list[0].tools.exec.node "node-id-or-name"
+fluffbuzz config unset tools.web.search.apiKey
+fluffbuzz config validate
+fluffbuzz config validate --json
 ```
 
 ## Paths
@@ -29,15 +29,15 @@ openclaw config validate --json
 Paths use dot or bracket notation:
 
 ```bash
-openclaw config get agents.defaults.workspace
-openclaw config get agents.list[0].id
+fluffbuzz config get agents.defaults.workspace
+fluffbuzz config get agents.list[0].id
 ```
 
 Use the agent list index to target a specific agent:
 
 ```bash
-openclaw config get agents.list
-openclaw config set agents.list[1].tools.exec.node "node-id-or-name"
+fluffbuzz config get agents.list
+fluffbuzz config set agents.list[1].tools.exec.node "node-id-or-name"
 ```
 
 ## Values
@@ -46,14 +46,14 @@ Values are parsed as JSON5 when possible; otherwise they are treated as strings.
 Use `--strict-json` to require JSON5 parsing. `--json` remains supported as a legacy alias.
 
 ```bash
-openclaw config set agents.defaults.heartbeat.every "0m"
-openclaw config set gateway.port 19001 --strict-json
-openclaw config set channels.whatsapp.groups '["*"]' --strict-json
+fluffbuzz config set agents.defaults.heartbeat.every "0m"
+fluffbuzz config set gateway.port 19001 --strict-json
+fluffbuzz config set channels.whatsapp.groups '["*"]' --strict-json
 ```
 
 ## Subcommands
 
-- `config file`: Print the active config file path (resolved from `OPENCLAW_CONFIG_PATH` or default location).
+- `config file`: Print the active config file path (resolved from `FLUFFBUZZ_CONFIG_PATH` or default location).
 
 Restart the gateway after edits.
 
@@ -63,6 +63,6 @@ Validate the current config against the active schema without starting the
 gateway.
 
 ```bash
-openclaw config validate
-openclaw config validate --json
+fluffbuzz config validate
+fluffbuzz config validate --json
 ```

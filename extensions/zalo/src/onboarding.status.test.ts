@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk";
+import type { FluffBuzzConfig } from "fluffbuzz/plugin-sdk";
 import { describe, expect, it } from "vitest";
 import { zaloOnboardingAdapter } from "./onboarding.js";
 
@@ -15,7 +15,7 @@ describe("zalo onboarding status", () => {
             },
           },
         },
-      } as OpenClawConfig,
+      } as FluffBuzzConfig,
       accountOverrides: {},
     });
 

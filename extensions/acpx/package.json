@@ -1,12 +1,12 @@
 {
-  "name": "@openclaw/acpx",
+  "name": "@fluffbuzz/acpx",
   "version": "2026.3.2",
-  "description": "OpenClaw ACP runtime backend via acpx",
+  "description": "FluffBuzz ACP runtime backend via acpx",
   "type": "module",
   "dependencies": {
     "acpx": "0.1.15"
   },
-  "openclaw": {
+  "fluffbuzz": {
     "extensions": [
       "./index.ts"
     ]

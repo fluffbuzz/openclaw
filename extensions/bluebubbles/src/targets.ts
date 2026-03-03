@@ -5,7 +5,7 @@ import {
   type ParsedChatTarget,
   resolveServicePrefixedAllowTarget,
   resolveServicePrefixedTarget,
-} from "openclaw/plugin-sdk";
+} from "fluffbuzz/plugin-sdk";
 
 export type BlueBubblesService = "imessage" | "sms" | "auto";
 

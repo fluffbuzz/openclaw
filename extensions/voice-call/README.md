@@ -1,6 +1,6 @@
-# @openclaw/voice-call
+# @fluffbuzz/voice-call
 
-Official Voice Call plugin for **OpenClaw**.
+Official Voice Call plugin for **FluffBuzz**.
 
 Providers:
 
@@ -9,15 +9,15 @@ Providers:
 - **Plivo** (Voice API + XML transfer + GetInput speech)
 - **Mock** (dev/no network)
 
-Docs: `https://docs.openclaw.ai/plugins/voice-call`
-Plugin system: `https://docs.openclaw.ai/plugin`
+Docs: `https://docs.fluffbuzz.com/plugins/voice-call`
+Plugin system: `https://docs.fluffbuzz.com/plugin`
 
 ## Install (local dev)
 
-### Option A: install via OpenClaw (recommended)
+### Option A: install via FluffBuzz (recommended)
 
 ```bash
-openclaw plugins install @openclaw/voice-call
+fluffbuzz plugins install @fluffbuzz/voice-call
 ```
 
 Restart the Gateway afterwards.
@@ -25,9 +25,9 @@ Restart the Gateway afterwards.
 ### Option B: copy into your global extensions folder (dev)
 
 ```bash
-mkdir -p ~/.openclaw/extensions
-cp -R extensions/voice-call ~/.openclaw/extensions/voice-call
-cd ~/.openclaw/extensions/voice-call && pnpm install
+mkdir -p ~/.fluffbuzz/extensions
+cp -R extensions/voice-call ~/.fluffbuzz/extensions/voice-call
+cd ~/.fluffbuzz/extensions/voice-call && pnpm install
 ```
 
 ## Config
@@ -143,13 +143,13 @@ Notes:
 ## CLI
 
 ```bash
-openclaw voicecall call --to "+15555550123" --message "Hello from OpenClaw"
-openclaw voicecall continue --call-id <id> --message "Any questions?"
-openclaw voicecall speak --call-id <id> --message "One moment"
-openclaw voicecall end --call-id <id>
-openclaw voicecall status --call-id <id>
-openclaw voicecall tail
-openclaw voicecall expose --mode funnel
+fluffbuzz voicecall call --to "+15555550123" --message "Hello from FluffBuzz"
+fluffbuzz voicecall continue --call-id <id> --message "Any questions?"
+fluffbuzz voicecall speak --call-id <id> --message "One moment"
+fluffbuzz voicecall end --call-id <id>
+fluffbuzz voicecall status --call-id <id>
+fluffbuzz voicecall tail
+fluffbuzz voicecall expose --mode funnel
 ```
 
 ## Tool

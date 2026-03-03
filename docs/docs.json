@@ -1,14 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OpenClaw",
+  "name": "FluffBuzz",
   "description": "Self-hosted gateway that connects WhatsApp, Telegram, Discord, iMessage, and more to AI coding agents. Run a single Gateway process on your own machine and message your AI assistant from anywhere.",
   "theme": "mint",
   "icons": {
     "library": "lucide"
   },
   "logo": {
-    "light": "/assets/pixel-lobster.svg",
-    "dark": "/assets/pixel-lobster.svg"
+    "light": "/assets/pixel-puppy.svg",
+    "dark": "/assets/pixel-puppy.svg"
   },
   "fonts": {
     "body": {
@@ -18,7 +18,7 @@
       "family": "DM Sans"
     }
   },
-  "favicon": "/assets/pixel-lobster.svg",
+  "favicon": "/assets/pixel-puppy.svg",
   "colors": {
     "primary": "#FF5A36",
     "dark": "#FF5A36",
@@ -36,12 +36,12 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/openclaw/openclaw",
+        "href": "https://github.com/fluffbuzz/fluffbuzz",
         "icon": "github"
       },
       {
         "label": "Releases",
-        "href": "https://github.com/openclaw/openclaw/releases",
+        "href": "https://github.com/fluffbuzz/fluffbuzz/releases",
         "icon": "package"
       }
     ]
@@ -265,31 +265,31 @@
     },
     {
       "source": "/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/fluffbuzz"
     },
     {
       "source": "/start/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/fluffbuzz"
     },
     {
       "source": "/start/clawd/",
-      "destination": "/start/openclaw"
+      "destination": "/start/fluffbuzz"
     },
     {
       "source": "/start/pairing",
       "destination": "/channels/pairing"
     },
     {
-      "source": "/clawhub",
-      "destination": "/tools/clawhub"
+      "source": "/buzzhub",
+      "destination": "/tools/buzzhub"
     },
     {
       "source": "/clawdhub",
-      "destination": "/tools/clawhub"
+      "destination": "/tools/buzzhub"
     },
     {
       "source": "/tools/clawdhub",
-      "destination": "/tools/clawhub"
+      "destination": "/tools/buzzhub"
     },
     {
       "source": "/configuration",
@@ -840,7 +840,7 @@
               {
                 "group": "Guides",
                 "pages": [
-                  "start/openclaw",
+                  "start/fluffbuzz",
                   "start/wizard-cli-reference",
                   "start/wizard-cli-automation"
                 ]
@@ -1000,7 +1000,7 @@
                   "tools/exec-approvals",
                   "tools/firecrawl",
                   "tools/llm-task",
-                  "tools/lobster",
+                  "tools/puppy",
                   "tools/loop-detection",
                   "tools/reactions",
                   "tools/thinking",
@@ -1032,7 +1032,7 @@
                   "tools/slash-commands",
                   "tools/skills",
                   "tools/skills-config",
-                  "tools/clawhub",
+                  "tools/buzzhub",
                   "tools/plugin"
                 ]
               },
@@ -1438,7 +1438,7 @@
               },
               {
                 "group": "指南",
-                "pages": ["zh-CN/start/openclaw"]
+                "pages": ["zh-CN/start/fluffbuzz"]
               }
             ]
           },
@@ -1596,7 +1596,7 @@
                   "zh-CN/tools/exec-approvals",
                   "zh-CN/tools/firecrawl",
                   "zh-CN/tools/llm-task",
-                  "zh-CN/tools/lobster",
+                  "zh-CN/tools/puppy",
                   "zh-CN/tools/reactions",
                   "zh-CN/tools/thinking",
                   "zh-CN/tools/web"
@@ -1626,7 +1626,7 @@
                   "zh-CN/tools/slash-commands",
                   "zh-CN/tools/skills",
                   "zh-CN/tools/skills-config",
-                  "zh-CN/tools/clawhub",
+                  "zh-CN/tools/buzzhub",
                   "zh-CN/tools/plugin"
                 ]
               },

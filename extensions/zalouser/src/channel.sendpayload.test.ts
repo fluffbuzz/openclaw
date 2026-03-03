@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "openclaw/plugin-sdk";
+import type { ReplyPayload } from "fluffbuzz/plugin-sdk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { zalouserPlugin } from "./channel.js";
 
